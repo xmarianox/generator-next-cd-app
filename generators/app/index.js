@@ -43,9 +43,23 @@ module.exports = class extends Generator {
       },
       {
         type: 'input',
-        name: 'author',
-        message: 'Ingresa tu nombre y email con el siguiente formato "Nombe <email>"',
-        default: 'Mariano <mariano@contenidos-digitales.com>',
+        name: 'author_name',
+        message: 'Ingresa tu nombre.',
+        default: 'Mariano',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'author_email',
+        message: 'Ingresa tu email.',
+        default: 'mariano@contenidos-digitales.com',
+        store: true
+      },
+      {
+        type: 'input',
+        name: 'author_url',
+        message: 'Ingresa tu sitio web "opcional".',
+        default: '',
         store: true
       }
     ];
@@ -64,7 +78,9 @@ module.exports = class extends Generator {
         name: this.props.name,
         version: this.props.version,
         description: this.props.description,
-        author: this.props.author
+        authorName: this.props.author_name,
+        authorEmail: this.props.author_email,
+        authorUrl: this.props.author_url
       }
     );
 

@@ -13,6 +13,7 @@ npm install -g generator-next-cd-app
 Then generate your new project:
 
 ```bash
+mkdir my-project && cd my-project
 yo next-cd-app
 ```
 

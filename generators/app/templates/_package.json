@@ -3,7 +3,11 @@
   "version": "<%= version %>",
   "description": "<%= description %>",
   "main": "index.js",
-  "author": "<%= author %>",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>",
+    "url": "<%= authorUrl %>"
+  },
   "repository": "Apache-2.0",
   "license": "ISC",
   "dependencies": {},
