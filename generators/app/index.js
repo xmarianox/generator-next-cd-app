@@ -15,7 +15,10 @@ module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     this.log(
-      yosay(`Welcome to the stylish ${chalk.red('generator-next-cd-app')} generator!`)
+      yosay(
+        `Bienvenidos al geneartor de proyectos de ${chalk.green.bold('CD')} 
+        ${chalk.green.underline.italic('generator-next-cd-app')}`
+      )
     );
 
     // Old app.
@@ -71,6 +74,7 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    // Copy package.json
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'),
@@ -83,12 +87,25 @@ module.exports = class extends Generator {
         authorUrl: this.props.author_url
       }
     );
-
+    // Copy base .gitignore
+    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+    // Copy base .babelrc
+    this.fs.copyTpl(this.templatePath('_babelrc'), this.destinationPath('.babelrc'));
+    // Copy base .eslintrc
+    this.fs.copyTpl(this.templatePath('_eslintrc'), this.destinationPath('.eslintrc'));
+    // Copy app files
     this.fs.copy(this.templatePath('app'), this.destinationPath('./'));
   }
 
   install() {
     this.installDependencies();
+
+    this.log(
+      yosay(
+        `Para correr tu proyecto puedes correr
+        el siguiente comando: ${chalk.magenta('npm run dev')}`
+      )
+    );
   }
 
   installDependencies() {
