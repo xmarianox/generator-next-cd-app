@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Mariano Molina <mariano@contenidos-digitales.com>",
+      "authorEmail": "mariano@contenidos-digitales.com",
+      "authorUrl": "https://marianomolina.xyz"
+    }
+  }
+}
