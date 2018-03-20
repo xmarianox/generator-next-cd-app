@@ -1,5 +1,5 @@
 # generator-next-cd-app [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Generador de proyectos para CD. Utilizando NextJS, styled-components, Express.
+> Generador de proyectos para CD. Utilizando NextJS, Styled-Components, Express.
 
 ## Installation
 
@@ -13,7 +13,6 @@ npm install -g generator-next-cd-app
 Then generate your new project:
 
 ```bash
-mkdir my-project && cd my-project
 yo next-cd-app
 ```
 
