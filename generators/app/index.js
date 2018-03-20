@@ -16,7 +16,8 @@ module.exports = class extends Generator {
     // Have Yeoman greet the user.
     this.log(
       yosay(
-        `Bienvenidos al geneartor de proyectos de ${chalk.green.bold('CD')} 
+        `Bienvenidos al generador de proyectos 
+        de ${chalk.green.bold('CD')} 
         ${chalk.green.underline.italic('generator-next-cd-app')}`
       )
     );
@@ -77,7 +78,7 @@ module.exports = class extends Generator {
     // Copy package.json
     this.fs.copyTpl(
       this.templatePath('_package.json'),
-      this.destinationPath('package.json'),
+      this.destinationPath(`./${this.props.appname}/package.json`),
       {
         name: this.props.name,
         version: this.props.version,
@@ -88,24 +89,29 @@ module.exports = class extends Generator {
       }
     );
     // Copy base .gitignore
-    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copyTpl(
+      this.templatePath('_gitignore'),
+      this.destinationPath(`./${this.props.appname}/.gitignore`)
+    );
     // Copy base .babelrc
-    this.fs.copyTpl(this.templatePath('_babelrc'), this.destinationPath('.babelrc'));
+    this.fs.copyTpl(
+      this.templatePath('_babelrc'),
+      this.destinationPath(`./${this.props.appname}/.babelrc`)
+    );
     // Copy base .eslintrc
-    this.fs.copyTpl(this.templatePath('_eslintrc'), this.destinationPath('.eslintrc'));
+    this.fs.copyTpl(
+      this.templatePath('_eslintrc'),
+      this.destinationPath(`./${this.props.appname}/.eslintrc`)
+    );
     // Copy app files
-    this.fs.copy(this.templatePath('app'), this.destinationPath('./'));
+    this.fs.copy(
+      this.templatePath('app'),
+      this.destinationPath(`./${this.props.appname}/`)
+    );
   }
 
   install() {
     this.installDependencies();
-
-    this.log(
-      yosay(
-        `Para correr tu proyecto puedes correr
-        el siguiente comando: ${chalk.magenta('npm run dev')}`
-      )
-    );
   }
 
   installDependencies() {
@@ -125,7 +131,6 @@ module.exports = class extends Generator {
         'save-dev': false
       }
     );
-
     // Install Dev dependecies.
     this.npmInstall(
       [
@@ -140,6 +145,13 @@ module.exports = class extends Generator {
       {
         'save-dev': true
       }
+    );
+    // Message after install
+    this.log(
+      yosay(
+        `Para correr tu proyecto puedes correr
+        el siguiente comando: ${chalk.magenta('npm run dev')}`
+      )
     );
   }
 };
