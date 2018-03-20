@@ -1,7 +1,7 @@
 {
   "name": "generator-next-cd-app",
   "version": "0.0.1",
-  "description": "Generador de proyectos para CD. Utilizando NextJS, styled-components, Express.",
+  "description": "Generador de proyectos para CD. Utilizando NextJS, styled-components y express.",
   "homepage": "",
   "author": {
     "name": "Mariano Molina <mariano@contenidos-digitales.com>",
@@ -13,7 +13,11 @@
   ],
   "main": "generators/index.js",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "next",
+    "react",
+    "styled-components",
+    "express"
   ],
   "devDependencies": {
     "yeoman-test": "^1.7.0",
