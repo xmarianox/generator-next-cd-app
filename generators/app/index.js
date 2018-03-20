@@ -2,14 +2,12 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const mkdirp = require('mkdirp');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-
-    this.argument('appname', { type: String, required: true });
-
-    this.log(this.options.appname);
+    this.log(`${chalk.magenta('Iniciando...')}`);
   }
 
   prompting() {
@@ -49,14 +47,14 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'author_name',
         message: 'Ingresa tu nombre.',
-        default: 'Mariano',
+        default: '',
         store: true
       },
       {
         type: 'input',
         name: 'author_email',
         message: 'Ingresa tu email.',
-        default: 'mariano@contenidos-digitales.com',
+        default: '',
         store: true
       },
       {
@@ -75,10 +73,14 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    let dir = this.props.name;
+
+    this.destinationRoot(mkdirp.sync(dir));
+
     // Copy package.json
     this.fs.copyTpl(
       this.templatePath('_package.json'),
-      this.destinationPath(`./${this.props.appname}/package.json`),
+      this.destinationPath('package.json'),
       {
         name: this.props.name,
         version: this.props.version,
@@ -89,25 +91,13 @@ module.exports = class extends Generator {
       }
     );
     // Copy base .gitignore
-    this.fs.copyTpl(
-      this.templatePath('_gitignore'),
-      this.destinationPath(`./${this.props.appname}/.gitignore`)
-    );
+    this.fs.copyTpl(this.templatePath('_gitignore'), this.destinationPath('.gitignore'));
     // Copy base .babelrc
-    this.fs.copyTpl(
-      this.templatePath('_babelrc'),
-      this.destinationPath(`./${this.props.appname}/.babelrc`)
-    );
+    this.fs.copyTpl(this.templatePath('_babelrc'), this.destinationPath('.babelrc'));
     // Copy base .eslintrc
-    this.fs.copyTpl(
-      this.templatePath('_eslintrc'),
-      this.destinationPath(`./${this.props.appname}/.eslintrc`)
-    );
+    this.fs.copyTpl(this.templatePath('_eslintrc'), this.destinationPath('.eslintrc'));
     // Copy app files
-    this.fs.copy(
-      this.templatePath('app'),
-      this.destinationPath(`./${this.props.appname}/`)
-    );
+    this.fs.copy(this.templatePath('app'), this.destinationPath('./'));
   }
 
   install() {
