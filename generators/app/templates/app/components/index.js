@@ -1,1 +1,1 @@
-// TODO: add components index
+export { default as Layout } from './Layout';
