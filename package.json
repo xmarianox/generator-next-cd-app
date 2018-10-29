@@ -1,6 +1,6 @@
 {
   "name": "generator-next-cd-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generador de proyectos para CD. Utilizando NextJS, styled-components y express.",
   "homepage": "",
   "author": {
